@@ -1,0 +1,183 @@
+<!-- <section class="wrap" *ngIf="hotel">
+  <a class="back" href="javascript:history.back()">← Back</a>
+  <h2>{{ hotel.name }}</h2>
+  <p class="muted">{{ hotel.city }} · {{ hotel.address || 'No address' }}</p> -->
+ 
+  <!-- Tabs -->
+  <!-- <div class="tabs">
+    <button
+      [class.active]="activeTab === 'roomTypes'"
+      (click)="activeTab = 'roomTypes'">
+      Room Types
+    </button>
+    <button
+      [class.active]="activeTab === 'rooms'"
+      (click)="activeTab = 'rooms'">
+      Rooms
+    </button>
+  </div>
+  -->
+  <!-- Room Types Content -->
+  <!-- <div *ngIf="activeTab === 'roomTypes'" class="tab-content">
+    <div class="section-header">
+    <h3>Manage Room Types</h3>
+    <a class="btn primary" [routerLink]="['/hotels', hotelId, 'roomtypes','add']">
+      Add Room Types
+    </a>
+    </div>
+    <table class="table">
+  <thead>
+    <tr><th>ID</th><th>Type</th><th>Max Guests</th><th>Base Price</th><th>Action</th></tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let r of roomTypes">
+      <td class="content">{{r.id}}</td>
+      <td class="content">{{r.name}}</td>
+      <td class="content">{{r.maxGuests}}</td>
+      <td class="content">{{r.basePrice}}</td>
+      <td>
+        <div class="actions">
+        <button class="btn small" [routerLink]="['/roomtypes/edit', r.id]">Edit</button>
+        <button class="btn small danger" (click)="delete(r.id)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+  -->
+  <!-- Rooms Content -->
+  <!-- <div *ngIf="activeTab === 'rooms'" class="tab-content">
+    <div class="section-header">
+    <h3>Rooms</h3>
+    <a class="btn primary">
+      Add Room 
+    </a>
+    </div>
+    <div class="filters">
+      <label>Status:
+        <select [(ngModel)]="status" (change)="loadRooms()">
+          <option value="">All</option>
+          <option value="AVAILABLE">Available</option>
+          <option value="MAINTENANCE">Maintenance</option>
+          <option value="BOOKED">Booked</option>
+        </select>
+      </label>
+    </div>
+ 
+    <table class="table" *ngIf="!roomsLoading && !roomsError">
+      <thead>
+        <tr><th>Number</th><th>Type</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of rooms">
+          <td>{{ r.roomNumber }}</td>
+          <td>{{ r.roomType.name }}</td>
+          <td>{{ r.status }}</td>
+          <td class="actions">
+            <button class="btn small" [routerLink]="['/hotels', hotel.id, 'rooms', r.id, 'edit']">
+              Edit
+            </button>
+            <button class="btn small danger" (click)="deleteRoom(r.id)">
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section> -->
+
+<section class="wrap section" *ngIf="hotel as h">
+  <!-- Header -->
+  <div class="section-header">
+    <div>
+      <div class="h1">{{h.name}}</div>
+      <div class="muted">{{h.city}} · {{h.address || 'No address'}}</div>
+    </div>
+    <span class="badge">{{h.status}}</span>
+  </div>
+ 
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab" [class.active]="activeTab==='roomTypes'" (click)="activeTab='roomTypes'">Room Types</button>
+    <button class="tab" [class.active]="activeTab==='rooms'" (click)="activeTab='rooms'">Rooms</button>
+  </div>
+ 
+  <!-- Room Types content -->
+  <div *ngIf="activeTab==='roomTypes'" class="card">
+    <div class="section-header">
+      <div class="h2">Manage Room Types</div>
+      <a class="btn primary" [routerLink]="['/hotels', hotelId, 'roomtypes', 'add']">+ Add Room Type</a>
+    </div>
+ 
+    <div *ngIf="typesLoading" class="muted">Loading room types…</div>
+    <div *ngIf="typesError" class="muted">⚠ {{typesError}}</div>
+ 
+    <table *ngIf="!typesLoading && !typesError" class="table">
+      <thead>
+        <tr>
+          <th style="width:80px">ID</th>
+          <th>Type</th>
+          <th style="width:160px">Max Guests</th>
+          <th style="width:160px">Base Price</th>
+          <th style="width:240px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of roomTypes">
+          <td>{{r.id}}</td>
+          <td>{{r.name || r.type}}</td>
+          <td>{{r.maxGuests}}</td>
+          <td>{{r.basePrice | currency:'INR':'symbol-narrow'}}</td>
+          <td class="actions">
+            <a class="btn sm ghost" [routerLink]="['/roomtypes/edit', r.id]">Edit</a>
+            <button class="btn sm danger" (click)="delete(r.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <!-- Rooms content -->
+  <div *ngIf="activeTab==='rooms'" class="card">
+    <div class="section-header">
+      <div class="h2">Rooms</div>
+      <div class="right stack">
+        <label class="muted" for="statusSel" style="font-weight:600">Status:</label>
+        <select id="statusSel" [(ngModel)]="status" (change)="loadRooms()">
+          <option value="">All</option>
+          <option value="AVAILABLE">AVAILABLE</option>
+          <option value="MAINTENANCE">MAINTENANCE</option>
+          <option value="BOOKED">BOOKED</option>
+        </select>
+      </div>
+    </div>
+ 
+    <div *ngIf="roomsLoading" class="muted">Loading rooms…</div>
+    <div *ngIf="roomsError" class="muted">⚠ {{roomsError}}</div>
+ 
+    <table *ngIf="!roomsLoading && !roomsError" class="table">
+      <thead>
+        <tr>
+          <th style="width:100px">#</th>
+          <th>Type</th>
+          <th style="width:180px">Status</th>
+          <th style="width:260px"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of rooms">
+          <td>{{r.roomNumber}}</td>
+          <td>{{r.roomType?.name}}</td>
+          <td><span class="badge">{{r.status}}</span></td>
+          <td class="actions">
+            <a class="btn sm ghost" [routerLink]="['/hotels', hotelId, 'rooms', r.id, 'edit']">Edit</a>
+            <button class="btn sm danger" (click)="deleteRoom(r.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+ 

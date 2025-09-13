@@ -1,0 +1,67 @@
+<!-- <section class="wrap">
+  <div class="header-row">
+      <h2>Hotels</h2>
+      <button class="btn primary" routerLink="/hotels/add">+ Add Hotel</button>
+      </div>
+      <div *ngIf="loading" class="loading">Loading...</div>
+      <div *ngIf="error" class="error">{{error}}</div>
+ 
+      <table *ngIf="!loading && !error" class="table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>City</th><th>Status</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let h of hotels">
+            <td class="content">{{h.id}}</td>
+            <td class="content">{{h.name}}</td>
+            <td class="content">{{h.city}}</td>
+            <td class="content">{{h.status}}</td>
+            <td>
+              <div class="actions">
+                <button class="btn small" [routerLink]="['/hotels', h.id]">View</button>
+                <button class="btn small" [routerLink]="['/hotels/edit', h.id]">Edit</button>
+                <button class="btn small danger" (click)="delete(h.id)">Delete</button>
+              </div>
+             </td> 
+          </tr>
+        </tbody>
+      </table>
+    </section> -->
+
+<section class="wrap section">
+  <div class="section-header">
+    <div>
+      <div class="h2">Hotels</div>
+      <div class="muted">Manage properties in your catalog</div>
+    </div>
+    <a class="btn primary" routerLink="/hotels/add">+ Add Hotel</a>
+  </div>
+ 
+  <div *ngIf="loading" class="muted">Loading…</div>
+  <div *ngIf="error" class="muted">⚠ {{error}}</div>
+ 
+  <table *ngIf="!loading && !error" class="table">
+    <thead>
+      <tr>
+        <th style="width:80px">ID</th>
+        <th>Name</th>
+        <th style="width:220px">City</th>
+        <th style="width:160px">Status</th>
+        <th style="width:280px"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let h of hotels">
+        <td>{{h.id}}</td>
+        <td>{{h.name}}</td>
+        <td>{{h.city}}</td>
+        <td><span class="badge" [ngClass]="h.status==='ACTIVE' ? 'ok' : 'bad'">{{h.status}}</span></td>
+        <td class="actions">
+          <a class="btn sm ghost" [routerLink]="['/hotels', h.id]">View</a>
+          <a class="btn sm ghost" [routerLink]="['/hotels/edit', h.id]">Edit</a>
+          <button class="btn sm danger" (click)="delete(h.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>

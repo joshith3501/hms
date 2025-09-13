@@ -1,0 +1,36 @@
+  <!-- <header class="navbar">
+      <a routerLink="/" class="brand">Hotel Admin</a>
+      <nav>
+        <a routerLink="/hotels" routerLinkActive="active">Hotels</a>
+      </nav>
+    </header>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+     -->
+
+<header class="appbar">
+  <div class="inner wrap" style="padding-left:var(--sp-6); padding-right:var(--sp-6);">
+    <div class="brand h2">Hotel Admin</div>
+    <nav class="nav">
+      <a routerLink="/hotels" routerLinkActive="active">Hotels</a>
+      <a>Staff Management</a>
+      <!-- add more links later -->
+    </nav>
+  </div>
+</header>
+ 
+<main>
+<router-outlet></router-outlet>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="brand">Hotel Admin</div>
+    <nav class="footer-nav">
+      <a routerLink="/hotels">Hotels</a>
+      <a href="mailto:support@example.com">Support</a>
+      <a href="#">Privacy</a>
+    </nav>
+    <div class="copy">© {{currentYear}} Acme Hospitality</div>
+  </div>
+</footer>

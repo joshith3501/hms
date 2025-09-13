@@ -1,0 +1,223 @@
+/* .wrap { padding: 16px; }
+.muted { color:#666; }
+.list { padding-left: 16px; }
+.loading { padding: 8px; }
+.error { padding: 8px; color: #b00020; }
+.back { display:inline-block; margin-bottom: 8px; text-decoration:none; }
+.filters { margin: 8px 0; }
+.table { width:100%; border-collapse: collapse; }
+.table th, .table td { border:1px solid #ddd; padding:8px; }*/
+
+/* General */
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f9fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+ 
+a.back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: #3b82f6;
+  font-size: 0.9rem;
+}
+ 
+.hotel-header {
+  margin-bottom: 1rem;
+}
+ 
+.hotel-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+ 
+.hotel-header .muted {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+ 
+/* Tabs */
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 1rem;
+}
+ 
+.tabs button {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #555;
+  border: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+ 
+.tabs button:hover {
+  color: #000;
+}
+ 
+.tabs button.active {
+  color: white;
+  background-color: #1976d2;
+  font-weight: 600;
+}
+ 
+.tab-content {
+  padding: 1rem 0;
+}
+/* Card containers */
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+ 
+/* Room types list */
+.room-types {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+ 
+.room-type-card {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+ 
+.room-type-card .info {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+ 
+/* Table */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+ 
+.table th,
+.table td {
+  text-align: left;
+  padding: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: middle;
+}
+ 
+/* Buttons */
+.btn {
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+ 
+.btn.small {
+  background: #edf2f7;
+  color: #2d3748;
+  margin-right: 0.5rem;
+}
+ 
+.btn.small:hover {
+  background: #e2e8f0;
+}
+ 
+.btn.danger {
+  background: #e53e3e;
+  color: white;
+} 
+.btn.danger:hover {
+    background: red;
+} 
+
+.btn:not(.danger) {
+  background: #e5e7eb;
+  color: #111827;
+}
+ 
+/* Filters */
+.filters {
+  margin-bottom: 1rem;
+}
+ 
+select {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+ 
+/* Status badges */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+ 
+.badge.available {
+  background: #dcfce7;
+  color: #166534;
+}
+ 
+.badge.maintenance {
+  background: #fef9c3;
+  color: #854d0e;
+}
+ 
+.badge.booked {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+ 
+.section-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+ 
+.section-header .btn {
+  padding: 0.5rem 1rem;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+ 
+.section-header .btn:hover {
+  background: #145ea8;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.content{
+    padding-top: 2rem;
+}
+ 
+ 

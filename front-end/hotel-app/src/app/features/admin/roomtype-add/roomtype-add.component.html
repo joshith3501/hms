@@ -1,0 +1,22 @@
+<section class="wrap">
+  <h2>Add Room Type</h2>
+  
+  <div *ngIf="formError" class="alert error">{{formError}}</div>
+
+  <form (ngSubmit)="save()" #roomTypeForm="ngForm">
+    <label>Type:</label>
+    <input type="text" name="type" [(ngModel)]="roomType.name" required />
+    <br />
+ 
+    <label>Max Guests:</label>
+    <input type="number" name="maxGuests" [(ngModel)]="roomType.maxGuests" min="1" required />
+    <br />
+ 
+    <label>Base Price:</label>
+    <input type="number" name="basePrice" [(ngModel)]="roomType.basePrice" step="0.01" required />
+    <br />
+ 
+    <button type="submit" class="btn primary" [disabled]="!roomTypeForm.form.valid">Save</button>
+    <button type="button" class="btn ghost" (click)="cancel()">Cancel</button>
+  </form>
+</section>

@@ -1,0 +1,90 @@
+<!-- <section class="wrap">
+      <h2>Add Hotel</h2>
+      <form (ngSubmit)="save()" #hotelForm="ngForm">
+        <label>Name:
+          <input type="text" name="name" [(ngModel)]="hotel.name" required>
+        </label><br>
+        <label>City:
+          <input type="text" name="city" [(ngModel)]="hotel.city" required>
+        </label><br>
+        <label>Address:
+          <input type="text" name="address" [(ngModel)]="hotel.address">
+        </label><br>
+        <label>Status:
+          <select name="status" [(ngModel)]="hotel.status">
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+          </select>
+        </label><br><br>
+        <button type="submit" [disabled]="hotelForm.invalid">Save</button>
+        <button type="button" (click)="cancel()">Cancel</button>
+      </form>
+    </section> -->
+
+    <!-- <div class="section-header">
+  <div class="h2">Add Hotel</div>
+  <div class="muted">Create a new property</div>
+</div>
+ 
+<form (ngSubmit)="save()" #hotelForm="ngForm" class="card" style="display:grid; gap:var(--sp-4)">
+  <div>
+    <label>Name</label>
+    <input name="name" [(ngModel)]="hotel.name" required />
+  </div>
+  <div>
+    <label>City</label>
+    <input name="city" [(ngModel)]="hotel.city" required />
+  </div>
+  <div>
+    <label>Address</label>
+    <input name="address" [(ngModel)]="hotel.address" />
+  </div>
+  <div>
+    <label>Status</label>
+    <select name="status" [(ngModel)]="hotel.status">
+      <option value="ACTIVE">ACTIVE</option>
+      <option value="INACTIVE">INACTIVE</option>
+    </select>
+  </div>
+  <div class="right">
+    <button class="btn ghost" type="button" (click)="cancel()">Cancel</button>
+    <button class="btn primary" type="submit" [disabled]="hotelForm.invalid">Save</button>
+  </div>
+</form>
+  -->
+
+<section class="wrap section narrow">
+  <div class="section-header">
+    <div class="h2">Add Hotel</div>
+  </div>
+
+  <div *ngIf="formError" class="alert error">{{formError}}</div>
+ 
+  <form (ngSubmit)="save()" #hotelForm="ngForm" class="card form-card">
+    <div>
+      <label>Name</label>
+      <input name="name" [(ngModel)]="hotel.name" required />
+    </div>
+    <div>
+      <label>City</label>
+      <input name="city" [(ngModel)]="hotel.city" required />
+    </div>
+    <div>
+      <label>Address</label>
+      <input name="address" [(ngModel)]="hotel.address" />
+    </div>
+    <div>
+      <label>Status</label>
+      <select name="status" [(ngModel)]="hotel.status">
+        <option value="ACTIVE">ACTIVE</option>
+        <option value="INACTIVE">INACTIVE</option>
+      </select>
+    </div>
+ 
+    <div class="right">
+      <button type="button" class="btn ghost" (click)="cancel()">Cancel</button>
+      <button type="submit" class="btn primary" [disabled]="hotelForm.invalid">Save</button>
+    </div>
+  </form>
+</section>
+ 

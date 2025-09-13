@@ -1,0 +1,28 @@
+<section class="wrap section narrow">
+  <div class="section-header">
+    <h2>Edit Hotel</h2>
+  </div>
+  
+  <form (ngSubmit)="save()" #hotelForm="ngForm" class="card form-card">
+    <div>
+    <label>Name</label>
+      <input type="text" [(ngModel)]="hotel.name" name="name" required />
+    </div>
+    <div>
+    <label>City</label>
+      <input type="text" [(ngModel)]="hotel.city" name="city" required />
+    </div>
+    <div>
+    <label>Address</label>
+      <input type="text" [(ngModel)]="hotel.address" name="address" />
+    </div>
+    <div>
+    <label>Status</label>
+      <select [(ngModel)]="hotel.status" name="status">
+        <option value="ACTIVE">ACTIVE</option>
+        <option value="INACTIVE">INACTIVE</option>
+      </select>
+    </div>
+    <button class="btn primary" type="submit">Save</button>
+  </form>
+</section>

@@ -1,0 +1,9 @@
+.wrap { padding: 16px; }
+.muted { color:#666; }
+.list { padding-left: 16px; }
+.loading { padding: 8px; }
+.error { padding: 8px; color: #b00020; }
+.back { display:inline-block; margin-bottom: 8px; text-decoration:none; }
+.filters { margin: 8px 0; }
+.table { width:100%; border-collapse: collapse; }
+.table th, .table td { border:1px solid #ddd; padding:8px; }
