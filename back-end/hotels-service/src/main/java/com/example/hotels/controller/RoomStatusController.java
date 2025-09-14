@@ -11,7 +11,7 @@ public class RoomStatusController {
 
     public RoomStatusController(RoomRepository repo){ this.repo = repo; }
 
-    @PatchMapping("/{roomId}/status")
+    @PutMapping("/{roomId}/status")
     public Room updateStatus(@PathVariable Long roomId, @RequestParam String status){
         Room room = repo.findById(roomId).orElseThrow();
         room.setStatus(status);

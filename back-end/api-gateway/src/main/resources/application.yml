@@ -6,6 +6,13 @@ spring:
     name: api-gateway
   cloud:
     gateway:
+      routes:
+        - id: hotels-service
+          uri: lb://hotels-service
+          predicates:
+            - Path=/hotels-service/**
+          filters:
+            - RewritePath=/hotels-service/(?<path>.*), /${path}
       discovery:
         locator:
           enabled: true

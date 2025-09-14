@@ -2,7 +2,9 @@ package com.example.booking.controller;
 
 import com.example.booking.entity.Booking;
 import com.example.booking.repository.BookingRepository;
+import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,7 +15,19 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/bookings")
 public class BookingController {
     private final BookingRepository repo;
-    public BookingController(BookingRepository repo){this.repo=repo;}
+    public BookingController(BookingRepository repo, RestTemplate restTemplate){
+        this.repo=repo;
+        this.restTemplate = restTemplate;
+    }
+
+    private final RestTemplate restTemplate;
+
+    //updateRoomStatus handler
+    private void updateRoomStatus(Long roomId, String status){
+        String url = "http://localhost:8080/hotels-service/api/rooms/" + roomId + "/status?status=" + status;
+        restTemplate.exchange(url, HttpMethod.PUT,null, Void.class);
+//        restTemplate.postForObject(url, null, Void.class);
+    }
 
     @GetMapping
     public List<Booking> list(){ return repo.findAll(); }
@@ -24,7 +38,9 @@ public class BookingController {
     @PostMapping
     public Booking create(@RequestBody Booking b){
         if(b.getStatus()==null) b.setStatus("PENDING");
-        return repo.save(b);
+        updateRoomStatus(b.getRoomId(),"OCCUPIED");
+        repo.save(b);
+        return b;
     }
 
     @PutMapping("/{id}")
@@ -39,7 +55,10 @@ public class BookingController {
         if(o.isEmpty()) throw new RuntimeException("Booking not found");
         Booking b = o.get();
         b.setStatus("CHECKED_IN");
-        return repo.save(b);
+        repo.save(b);
+
+        updateRoomStatus(b.getRoomId(),"OCCUPIED");
+        return b;
     }
 
     @PostMapping("/{id}/checkout")
@@ -48,7 +67,10 @@ public class BookingController {
         if(o.isEmpty()) throw new RuntimeException("Booking not found");
         Booking b = o.get();
         b.setStatus("COMPLETED");
-        return repo.save(b);
+        repo.save(b);
+
+        updateRoomStatus(b.getRoomId(),"AVAILABLE");
+        return b;
     }
 
     @PostMapping("/{id}/cancel")
@@ -82,5 +104,20 @@ public class BookingController {
         long occupied = repo.findByHotelIdAndStatus(hotelId, "CHECKED_IN").size();
         long totalBookings = repo.findByHotelId(hotelId).size();
         return java.util.Map.of("hotelId", hotelId, "occupied", occupied, "totalBookings", totalBookings);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+//        Optional<Booking> o = repo.findById(id);
+//        if(o.isEmpty()) throw new RuntimeException("Booking not found");
+//        Booking b = o.get();
+//        repo.deleteById(b.getId());
+//
+//        return b;
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Booking not found");
+        }
+        repo.deleteById(id);
+
     }
 }
